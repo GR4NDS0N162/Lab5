@@ -1,3 +1,6 @@
+import numpy as np
+
+
 class ImageAnalysis:
 
     def __init__(self, hash_dimension):
@@ -5,14 +8,13 @@ class ImageAnalysis:
 
     def analyze_image(self, processed_image):
         # Логика анализа изображения
-        result_image = self.detect_signs(processed_image)
-        result_image = self.compute_perceptual_hash(result_image)
-        return result_image
+        objects = self.detect_objects(processed_image)
+        hashes = self.compute_perceptual_hash(objects)
 
-    def detect_signs(self, image):
+    def detect_objects(self, image):
         # Обнаружение знаков
         # Реализация метода
-        return image
+        return np.array([image])
 
     def compute_perceptual_hash(self, image):
         # Вычисление перцептивного хэша
