@@ -38,4 +38,23 @@ class ImageAnalysis:
                 for x in range(width):
                     cropped_object[y][x] = objects[i][min_y + y][min_x + x]
 
+            scale = max_axis / self.hash_dimension
+
+            for y in range(hashes.shape[1]):
+                for x in range(hashes.shape[2]):
+                    x_start = round(scale * x)
+                    x_end = round(scale * (x + 1))
+                    y_start = round(scale * y)
+                    y_end = round(scale * (y + 1))
+
+                    bit_sum = 0
+                    bit_count = 0
+                    for y_bit in range(y_start, y_end):
+                        for x_bit in range(x_start, x_end):
+                            bit_sum += cropped_object[y_bit][x_bit]
+                            bit_count += 1
+                    bit = bit_sum / bit_count
+
+                    hashes[i][y][x] = 0 if bit < 0.5 else 1
+
         return hashes
