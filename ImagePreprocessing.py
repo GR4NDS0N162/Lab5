@@ -30,8 +30,8 @@ class ImagePreprocessing:
         l = np.clip((l - 0.5) * self.contrast_factor + 0.5, 0, 1)
         pixels_hsl[:, :, 2] = l
         pixels = Converters.hsl_to_rgb(pixels_hsl)
-        contrast_image = Image.fromarray(pixels.astype(np.uint8))
-        contrast_image.show()
+        # contrast_image = Image.fromarray(pixels.astype(np.uint8))
+        # contrast_image.show()
         return pixels
 
     def grayscale_filter(self, pixels):
@@ -53,8 +53,8 @@ class ImagePreprocessing:
                 elif mode == MIN:
                     filtered_pixels[line][col] = np.min(window)
 
-        image = Image.fromarray(filtered_pixels)
-        image.show()
+        # image = Image.fromarray(filtered_pixels)
+        # image.show()
         return filtered_pixels
 
     def filter_mono(self, pixels):
@@ -63,8 +63,8 @@ class ImagePreprocessing:
             for col in range(len(pixels[line])):
                 pixels[line][col] = 0 if pixels[line][col] < mean else 255
 
-        mono_image = Image.fromarray(pixels)
-        mono_image.show()
+        # mono_image = Image.fromarray(pixels)
+        # mono_image.show()
         return pixels
 
     def dilate(self, pixels):
@@ -78,6 +78,6 @@ class ImagePreprocessing:
 
     def gradiant(self, pixels):
         gradiant_pixels = np.logical_xor(self.dilate(pixels), self.erode(pixels))
-        gradiant_image = Image.fromarray(gradiant_pixels)
-        gradiant_image.show()
+        # gradiant_image = Image.fromarray(gradiant_pixels)
+        # gradiant_image.show()
         return gradiant_pixels
