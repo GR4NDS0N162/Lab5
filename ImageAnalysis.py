@@ -7,16 +7,13 @@ class ImageAnalysis:
         self.hash_dimension = hash_dimension
 
     def analyze_image(self, processed_image):
-        # Логика анализа изображения
         objects = self.detect_objects(processed_image)
-        hashes = self.compute_perceptual_hash(objects)
+        hashes = np.zeros((objects.shape[0], self.hash_dimension, self.hash_dimension))
+        hashes = self.compute_perceptual_hashes(objects, hashes)
 
     def detect_objects(self, image):
-        # Обнаружение знаков
-        # Реализация метода
-        return np.array([image])
+        return np.array([image])  # TODO: Стоит заглушка, нужно реализовать.
 
-    def compute_perceptual_hash(self, image):
-        # Вычисление перцептивного хэша
-        # Реализация метода
-        return image
+    def compute_perceptual_hashes(self, objects, hashes):
+        # TODO: Нужно реализовать.
+        return hashes
