@@ -1,5 +1,8 @@
 class ImageAnalysis:
 
+    def __init__(self, hash_dimension):
+        self.hash_dimension = hash_dimension
+
     def analyze_image(self, processed_image):
         # Логика анализа изображения
         result_image = self.detect_signs(processed_image)

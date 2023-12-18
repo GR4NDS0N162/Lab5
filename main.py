@@ -12,7 +12,7 @@ MIN = -1
 if __name__ == "__main__":
     # Создание экземпляров модулей
     prep_module = ImagePreprocessing.ImagePreprocessing(step_window=1, contrast_factor=2, halftone_filter=MIN)
-    analysis_module = ImageAnalysis.ImageAnalysis()
+    analysis_module = ImageAnalysis.ImageAnalysis(16)
     storage_module = ImageStorage.ImageStorage()
 
     # Получение целевого изображения (предполагается, что image - это входное изображение)
