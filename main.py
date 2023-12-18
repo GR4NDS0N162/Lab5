@@ -1,16 +1,35 @@
-# This is a sample Python script.
+from PIL import Image
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import ImageAnalysis
+import ImagePreprocessing
+import ImageStorage
 
+MAX = 1
+MEDIAN = 0
+MIN = -1
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# Пример использования
+if __name__ == "__main__":
+    # Создание экземпляров модулей
+    prep_module = ImagePreprocessing.ImagePreprocessing(step_window=1, contrast_factor=2, halftone_filter=MIN)
+    analysis_module = ImageAnalysis.ImageAnalysis()
+    storage_module = ImageStorage.ImageStorage()
 
+    # Получение целевого изображения (предполагается, что image - это входное изображение)
+    target_image = Image.open("images/Главная дорога.jpg").convert("RGB")
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    # Модуль подготовки изображения
+    processed_image = prep_module.process_image(target_image)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    # Модуль анализа изображения
+    result_image = analysis_module.analyze_image(processed_image)
+
+    # Пример добавления известного образа в хранилище
+    perceptual_hash = "some_hash"
+    semantic_info = "semantic_information"
+    storage_module.add_known_image(perceptual_hash, semantic_info)
+
+    # Пример получения семантической информации по перцептивному хэшу
+    retrieved_info = storage_module.get_semantic_info(perceptual_hash)
+
+    print("Semantic Information:", retrieved_info)
