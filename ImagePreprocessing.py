@@ -1,5 +1,4 @@
 import numpy as np
-from PIL import Image
 
 import Converters
 
@@ -61,7 +60,7 @@ class ImagePreprocessing:
         mean = np.mean(pixels)
         for line in range(len(pixels)):
             for col in range(len(pixels[line])):
-                pixels[line][col] = 0 if pixels[line][col] < mean else 255
+                pixels[line][col] = 1 if pixels[line][col] < mean else 0
 
         # mono_image = Image.fromarray(pixels)
         # mono_image.show()
