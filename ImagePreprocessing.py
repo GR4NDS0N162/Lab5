@@ -21,15 +21,19 @@ class ImagePreprocessing:
         pixels = self.adjust_contrast(pixels)
         if show_image:
             Image.fromarray(pixels).show()
+
         pixels = self.to_grayscale(pixels)
         if show_image:
             Image.fromarray(pixels).show()
+
         pixels = self.filter_max_min(pixels, self.halftone_filter)
         if show_image:
             Image.fromarray(pixels).show()
+
         pixels = self.to_mono(pixels)
         if show_image:
             Image.fromarray(pixels).show()
+
         pixels = self.morphological_dilatation(pixels)
         if show_image:
             Image.fromarray(pixels).show()
@@ -46,12 +50,12 @@ class ImagePreprocessing:
         pixels_hsl[:, :, 2] = lightness
 
         pixels = Converters.hsl_to_rgb(pixels_hsl)
-        return pixels.astype(int)
+        return pixels.astype(np.uint8)
 
     def to_grayscale(self, pixels):
         r, g, b = pixels[:, :, 0], pixels[:, :, 1], pixels[:, :, 2]
         gray_pixels = 0.2989 * r + 0.5870 * g + 0.1140 * b
-        return gray_pixels.astype(int)
+        return gray_pixels.astype(np.uint8)
 
     def filter_max_min(self, pixels, mode):
         filtered_pixels = np.zeros((pixels.shape[0], pixels.shape[1]))
@@ -66,7 +70,7 @@ class ImagePreprocessing:
                 elif mode == MIN:
                     filtered_pixels[row][col] = np.min(window)
 
-        return filtered_pixels.astype(int)
+        return filtered_pixels.astype(np.uint8)
 
     def to_mono(self, pixels):
         mean = np.mean(pixels)
