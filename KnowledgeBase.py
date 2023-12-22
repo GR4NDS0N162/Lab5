@@ -1,9 +1,6 @@
 import json
-from itertools import product
 
 import numpy as np
-
-import Connection
 
 
 class Pattern:
@@ -44,39 +41,7 @@ class KnowledgeBase:
         return True
 
     def database_search(self, target_image):
-        known_objects = dict()
-        for i, hash in enumerate(target_image['hashes']):
-            for hash_stor in self.hash_storage:
-                if self.compare_hashes(hash, hash_stor, 0.2):
-                    if hash_stor in known_objects:
-                        known_objects[hash_stor].append(i)
-                    else:
-                        known_objects[hash_stor] = [i]
-
-        if len(known_objects) == 0:
-            return None
-
         result = []
-        for likeness in self.pattern_storage:
-            check = False
-            for component in likeness.components:
-                if component not in known_objects:
-                    check = True
-                    break
-
-            if check:
-                continue
-
-            arrays = []
-            for component in likeness.components:
-                arrays.append(known_objects[component])
-
-            all_combinations = list(product(*arrays))
-            for combin in all_combinations:
-                local_areas = [target_image['local_areas'][i] for i in combin]
-                connections = Connection.get_connections(likeness.components, local_areas)
-                if connections == likeness.connections:
-                    result.append(likeness.name)
 
         if len(result) == 0:
             return None
