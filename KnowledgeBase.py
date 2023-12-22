@@ -54,6 +54,7 @@ class KnowledgeBase:
 
         dif_hash = np.logical_xor(hash1, hash2)
         dif = np.count_nonzero(dif_hash)
+
         if dif / (self.hash_dimension ** 2) < accuracy:
             return True
         else:
