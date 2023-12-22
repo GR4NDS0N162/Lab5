@@ -63,17 +63,15 @@ class ImagePreprocessing:
 
         return pixels
 
-    def dilate(self, pixels):
-        return self.filter_median_max_min(pixels, MAX)
+    def morphological_dilatation(self, pixels):
+        return self.filter_max_min(pixels, MAX)
 
-    def erode(self, pixels):
-        return self.filter_median_max_min(pixels, MIN)
+    def morphological_erosion(self, pixels):
+        return self.filter_max_min(pixels, MIN)
 
-    def closing(self, pixels):
-        return self.erode(self.dilate(pixels))
+    def morphological_closure(self, pixels):
+        return self.morphological_erosion(self.morphological_dilatation(pixels))
 
     def gradiant(self, pixels):
-        gradiant_pixels = np.logical_xor(self.dilate(pixels), self.erode(pixels))
-        # gradiant_image = Image.fromarray(gradiant_pixels)
-        # gradiant_image.show()
+        gradiant_pixels = np.logical_xor(self.morphological_dilatation(pixels), self.morphological_erosion(pixels))
         return gradiant_pixels
