@@ -2,40 +2,45 @@ import numpy as np
 
 
 def rgb_to_hsl(pixels):
-    hue = []
-    saturation = []
-    lightness = []
+    hue_data = []
+    saturation_data = []
+    lightness_data = []
+
     r_chanel, g_chanel, b_chanel = pixels[:, :, 0], pixels[:, :, 1], pixels[:, :, 2]
+
     for line in range(len(pixels)):
         hue_line = []
         saturation_line = []
         lightness_line = []
+
         for col in range(len(pixels[line])):
-            r, g, b = r_chanel[line][col] / 255.0, g_chanel[line][col] / 255.0, b_chanel[line][col] / 255.0
-            max_s = max(r, g, b)
-            min_s = min(r, g, b)
-            l = (max_s + min_s) / 2.0
+            r, g, b = r_chanel[line][col] / 255, g_chanel[line][col] / 255, b_chanel[line][col] / 255
 
-            if max_s == min_s:
-                h = s = 0.0
+            c_max = max(r, g, b)
+            c_min = min(r, g, b)
+            delta = c_max - c_min
+
+            lightness = (c_max + c_min) / 2
+
+            if delta == 0:
+                hue = saturation = 0
             else:
-                d = max_s - min_s
-                s = d / (2.0 - max_s - min_s) if l > 0.5 else d / (max_s + min_s)
-                h = {
-                        r: (g - b) / d + (360.0 if g < b else 0.0),
-                        g: (b - r) / d + 120.0,
-                        b: (r - g) / d + 240.0,
-                    }[max_s] % 6.0
+                saturation = delta / (1 - abs(2 * lightness - 1))
+                hue = {
+                          r: ((g - b) / delta) % 6,
+                          g: ((b - r) / delta) + 2,
+                          b: ((r - g) / delta) + 4,
+                      }[c_max] * 60
 
-            hue_line.append(h * 60)
-            saturation_line.append(s)
-            lightness_line.append(l)
+            hue_line.append(hue)
+            saturation_line.append(saturation)
+            lightness_line.append(lightness)
 
-        hue.append(hue_line)
-        saturation.append(saturation_line)
-        lightness.append(lightness_line)
+        hue_data.append(hue_line)
+        saturation_data.append(saturation_line)
+        lightness_data.append(lightness_line)
 
-    pixels = np.dstack((np.array(hue), np.array(saturation), np.array(lightness)))
+    pixels = np.dstack((np.array(hue_data), np.array(saturation_data), np.array(lightness_data)))
     return pixels
 
 
