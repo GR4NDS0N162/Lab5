@@ -13,27 +13,24 @@ class ImageDatabaseApp:
 
     def __init__(self, root):
         self.root = root
-        self.root.title("Image Database App")
+        self.root.title("Приложение")
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
         self.root.resizable(False, False)
         self.image_path_entry = tk.Entry(self.root, width=40)
-        self.image_path_entry.grid(row=0, column=0, padx=10, pady=10)
+        self.image_path_entry.grid(row=0, column=0, columnspan=3)
 
-        self.browse_button = tk.Button(self.root, text="Browse", command=self.browse_image)
-        self.browse_button.grid(row=0, column=1, padx=10, pady=10)
+        self.browse_button = tk.Button(self.root, text="Обзор", command=self.browse_image)
+        self.browse_button.grid(row=0, column=3, columnspan=1)
 
-        self.calculate_hash_button = tk.Button(self.root, text="Calculate Hash", command=self.calculate_hash)
-        self.calculate_hash_button.grid(row=0, column=2, padx=10, pady=10)
+        self.calculate_hash_button = tk.Button(self.root, text="Вычислить хеш", command=self.calculate_hash)
+        self.calculate_hash_button.grid(row=1, column=0, columnspan=1)
 
-        self.add_to_database_button = tk.Button(self.root, text="Add to Database", command=self.add_to_database)
-        self.add_to_database_button.grid(row=1, column=0, columnspan=2, pady=10)
-
-        self.search_similar_button = tk.Button(self.root, text="Search Similar Images", command=self.search_likeness)
-        self.search_similar_button.grid(row=2, column=0, columnspan=2, pady=10)
+        self.add_to_database_button = tk.Button(self.root, text="Добавить в хранилище", command=self.add_to_database)
+        self.add_to_database_button.grid(row=1, column=1, columnspan=3)
 
         self.notification_label = tk.Label(self.root, text="", fg="green")
-        self.notification_label.grid(row=3, column=0, columnspan=2, pady=10)
+        self.notification_label.grid(row=3, column=0, columnspan=4)
 
         self.hash_dimension = 16
         self.prep_module = ImagePreprocessing.ImagePreprocessing(step_window=1, contrast_factor=2,
@@ -70,12 +67,6 @@ class ImageDatabaseApp:
             self.show_notification(f"Added to database: {self.target_image['name']}")
         else:
             self.show_notification(f"This image already exists!!!", "red")
-
-    def search_likeness(self):
-        result = self.knowledge_base.database_search(self.target_image)
-        if result is None:
-            self.show_notification(f"Search results: {result}", "red")
-        self.show_notification(f"Search results: {result}")
 
     def show_notification(self, message, color="green"):
         self.notification_label.config(text=message, fg=color)
