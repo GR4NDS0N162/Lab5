@@ -34,13 +34,14 @@ class ImagePreprocessing:
         pixels = Converters.hsl_to_rgb(pixels_hsl)
         return pixels.astype(int)
 
-    def grayscale_filter(self, pixels):
+    def to_grayscale(self, pixels):
         r, g, b = pixels[:, :, 0], pixels[:, :, 1], pixels[:, :, 2]
         gray_pixels = 0.2989 * r + 0.5870 * g + 0.1140 * b
         return gray_pixels.astype(int)
 
-    def filter_median_max_min(self, pixels, mode):
+    def filter_max_min(self, pixels, mode):
         filtered_pixels = np.zeros((pixels.shape[0], pixels.shape[1]))
+
         for line in range(len(pixels)):
             for col in range(len(pixels[line])):
                 window = pixels[max(0, line - self.step_window):min(pixels.shape[0], line + self.step_window + 1),
@@ -48,14 +49,10 @@ class ImagePreprocessing:
 
                 if mode == MAX:
                     filtered_pixels[line][col] = np.max(window)
-                elif mode == MEDIAN:
-                    filtered_pixels[line][col] = np.median(window)
                 elif mode == MIN:
                     filtered_pixels[line][col] = np.min(window)
 
-        # image = Image.fromarray(filtered_pixels)
-        # image.show()
-        return filtered_pixels
+        return filtered_pixels.astype(int)
 
     def filter_mono(self, pixels):
         mean = np.mean(pixels)
