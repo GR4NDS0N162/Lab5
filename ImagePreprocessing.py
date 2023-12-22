@@ -25,13 +25,14 @@ class ImagePreprocessing:
 
     def adjust_contrast(self, pixels):
         pixels_hsl = Converters.rgb_to_hsl(pixels)
-        l = pixels_hsl[:, :, 2]
-        l = np.clip((l - 0.5) * self.contrast_factor + 0.5, 0, 1)
-        pixels_hsl[:, :, 2] = l
+
+        lightness = pixels_hsl[:, :, 2]
+        lightness = np.clip((lightness - 0.5) * self.contrast_factor + 0.5, 0, 1)
+
+        pixels_hsl[:, :, 2] = lightness
+
         pixels = Converters.hsl_to_rgb(pixels_hsl)
-        # contrast_image = Image.fromarray(pixels.astype(np.uint8))
-        # contrast_image.show()
-        return pixels
+        return pixels.astype(int)
 
     def grayscale_filter(self, pixels):
         r, g, b = pixels[:, :, 0], pixels[:, :, 1], pixels[:, :, 2]
