@@ -42,15 +42,15 @@ class ImagePreprocessing:
     def filter_max_min(self, pixels, mode):
         filtered_pixels = np.zeros((pixels.shape[0], pixels.shape[1]))
 
-        for line in range(len(pixels)):
-            for col in range(len(pixels[line])):
-                window = pixels[max(0, line - self.step_window):min(pixels.shape[0], line + self.step_window + 1),
+        for row in range(len(pixels)):
+            for col in range(len(pixels[row])):
+                window = pixels[max(0, row - self.step_window):min(pixels.shape[0], row + self.step_window + 1),
                          max(0, col - self.step_window):min(pixels.shape[1], col + self.step_window + 1)]
 
                 if mode == MAX:
-                    filtered_pixels[line][col] = np.max(window)
+                    filtered_pixels[row][col] = np.max(window)
                 elif mode == MIN:
-                    filtered_pixels[line][col] = np.min(window)
+                    filtered_pixels[row][col] = np.min(window)
 
         return filtered_pixels.astype(int)
 
