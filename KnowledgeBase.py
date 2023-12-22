@@ -33,19 +33,19 @@ class KnowledgeBase:
         self.file_path = file_path
         self.hash_storage, self.likeness_storage = self.get_knowledge()
 
-    def add_likeness(self, name, hashs, local_areas):
-        for i, component in enumerate(hashs):
+    def add_likeness(self, name, hashes, local_areas):
+        for i, component in enumerate(hashes):
             not_changed = True
             for component_stor in self.hash_storage:
                 if self.compare_hashes(component, component_stor, 0.1):
-                    hashs[i] = component_stor
+                    hashes[i] = component_stor
                     not_changed = False
                     break
 
             if not_changed:
                 self.hash_storage.append(component)
 
-        self.likeness_storage.append(create_likeness(name, hashs, local_areas))
+        self.likeness_storage.append(create_likeness(name, hashes, local_areas))
         return True
 
     def database_search(self, target_image):
