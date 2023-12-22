@@ -38,16 +38,24 @@ class ImageDatabaseApp:
         self.analysis_module = ImageAnalysis.ImageAnalysis(hash_dimension=self.hash_dimension)
         self.knowledge_base = KnowledgeBase.KnowledgeBase(file_path="data.json", hash_dimension=self.hash_dimension)
 
-        option_list = self.knowledge_base.hash_storage
-        variable = tk.StringVar(self.root)
-        variable.set(option_list[0])
-        variable.trace("w", self.on_hash_option_click)
+        hash_option_list = self.knowledge_base.hash_storage
+        hash_variable = tk.StringVar(self.root)
+        hash_variable.set(hash_option_list[0])
+        hash_variable.trace("w", self.on_hash_option_click)
 
-        self.dropdown_hashes = tk.OptionMenu(self.root, variable, *option_list)
-        self.dropdown_hashes.grid(row=4, column=0, columnspan=5)
+        self.dropdown_hashes = tk.OptionMenu(self.root, hash_variable, *hash_option_list)
+        self.dropdown_hashes.grid(row=4, column=1, columnspan=4)
 
-        self.dropdown_hashes_info = tk.Message(self.root, text="", fg="black", width=400)
-        self.dropdown_hashes_info.grid(row=5, column=0, columnspan=5)
+        self.hashes_info = tk.Message(self.root, text="", fg="black", width=500)
+        self.hashes_info.grid(row=5, column=0, columnspan=5)
+
+        index_option_list = list(map(str, range(len(self.knowledge_base.pattern_storage))))
+        index_variable = tk.StringVar(self.root)
+        index_variable.set(index_option_list[0])
+        index_variable.trace("w", self.on_index_option_click)
+
+        self.dropdown_hashes = tk.OptionMenu(self.root, index_variable, *index_option_list)
+        self.dropdown_hashes.grid(row=4, column=0, columnspan=1)
 
         self.target_image = None
         self.knowledge_base_changed = False
@@ -55,7 +63,12 @@ class ImageDatabaseApp:
     def on_hash_option_click(self, *args):
         variable = self.dropdown_hashes.getvar(args[0])
         result = self.knowledge_base.database_search(variable)
-        self.dropdown_hashes_info.configure(text=str(result))
+        self.hashes_info.configure(text=str(result))
+
+    def on_index_option_click(self, *args):
+        variable = self.dropdown_hashes.getvar(args[0])
+        pattern = self.knowledge_base.get_by_index(int(variable))
+        self.hashes_info.configure(text=str(pattern))
 
     def browse_image(self):
         file_path = filedialog.askopenfilename(title="Select Image", filetypes=[("Image files", "*.png;*.jpg;*.jpeg")])

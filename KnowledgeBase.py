@@ -52,6 +52,9 @@ class KnowledgeBase:
 
         return result
 
+    def get_by_index(self, index):
+        return self.pattern_storage[index]
+
     def compare_hashes(self, hash1, hash2, accuracy):
         hash1 = get_binary_hash(hash1)
         hash2 = get_binary_hash(hash2)
