@@ -54,14 +54,13 @@ class ImagePreprocessing:
 
         return filtered_pixels.astype(int)
 
-    def filter_mono(self, pixels):
+    def to_mono(self, pixels):
         mean = np.mean(pixels)
-        for line in range(len(pixels)):
-            for col in range(len(pixels[line])):
-                pixels[line][col] = 1 if pixels[line][col] < mean else 0
 
-        # mono_image = Image.fromarray(pixels)
-        # mono_image.show()
+        for row in range(len(pixels)):
+            for col in range(len(pixels[row])):
+                pixels[row][col] = 0 if pixels[row][col] < mean else 1
+
         return pixels
 
     def dilate(self, pixels):
