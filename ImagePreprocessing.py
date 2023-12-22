@@ -1,4 +1,5 @@
 import numpy as np
+from PIL import Image
 
 import Converters
 
@@ -14,14 +15,24 @@ class ImagePreprocessing:
         self.contrast_factor = contrast_factor
         self.halftone_filter = halftone_filter
 
-    def process_image(self, image):
+    def process_image(self, image, show_image=False):
         pixels = np.array(image)
 
         pixels = self.adjust_contrast(pixels)
+        if show_image:
+            Image.fromarray(pixels).show()
         pixels = self.to_grayscale(pixels)
+        if show_image:
+            Image.fromarray(pixels).show()
         pixels = self.filter_max_min(pixels, self.halftone_filter)
+        if show_image:
+            Image.fromarray(pixels).show()
         pixels = self.to_mono(pixels)
+        if show_image:
+            Image.fromarray(pixels).show()
         pixels = self.morphological_dilatation(pixels)
+        if show_image:
+            Image.fromarray(pixels).show()
 
         pixels = 1 - pixels
         return pixels

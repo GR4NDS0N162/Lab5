@@ -19,7 +19,7 @@ if __name__ == "__main__":
     target_image = Image.open("images/Главная дорога.jpg").convert("RGB")
 
     # Модуль подготовки изображения
-    processed_image = prep_module.process_image(target_image)
+    processed_image = prep_module.process_image(target_image, True)
 
     # Модуль анализа изображения
     result_image = analysis_module.analyze_image(processed_image)
