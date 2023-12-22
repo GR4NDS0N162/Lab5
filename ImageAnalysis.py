@@ -126,18 +126,22 @@ class ImageAnalysis:
     def upscale_hash(self, cropped_object, size):
         hash = np.zeros((size, size), dtype=int)
         step_window = size // cropped_object.shape[0]
+
         for y in range(cropped_object.shape[0]):
             for x in range(cropped_object.shape[1]):
                 hash[round(y * step_window):round(y * step_window + step_window + 1),
                 round(x * step_window):round(x * step_window + step_window + 1)] = cropped_object[y][x]
+
         return hash
 
     def downscale_hash(self, cropped_object, size):
         hash = np.zeros((size, size), dtype=int)
         step_window = cropped_object.shape[0] // size
+
         for y in range(size):
             for x in range(size):
                 window = cropped_object[round(y * step_window):round(y * step_window + step_window + 1),
                          round(x * step_window):round(x * step_window + step_window + 1)]
                 hash[y][x] = round(np.mean(window))
+
         return hash
