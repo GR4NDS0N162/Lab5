@@ -117,31 +117,31 @@ class ImageAnalysis:
             return cropped_object
 
         if decrease:
-            hash = self.downscale_hash(cropped_object, self.hash_dimension)
+            perceptual_hash = self.downscale_hash(cropped_object, self.hash_dimension)
         else:
-            hash = self.downscale_hash(cropped_object, self.hash_dimension)
+            perceptual_hash = self.upscale_hash(cropped_object, self.hash_dimension)
 
-        return np.array(hash).astype(int)
+        return perceptual_hash
 
     def upscale_hash(self, cropped_object, size):
-        hash = np.zeros((size, size), dtype=int)
+        perceptual_hash = np.zeros((size, size), dtype=int)
         step_window = size // cropped_object.shape[0]
 
         for y in range(cropped_object.shape[0]):
             for x in range(cropped_object.shape[1]):
-                hash[round(y * step_window):round(y * step_window + step_window + 1),
+                perceptual_hash[round(y * step_window):round(y * step_window + step_window + 1),
                 round(x * step_window):round(x * step_window + step_window + 1)] = cropped_object[y][x]
 
-        return hash
+        return np.array(perceptual_hash).astype(int)
 
     def downscale_hash(self, cropped_object, size):
-        hash = np.zeros((size, size), dtype=int)
+        perceptual_hash = np.zeros((size, size), dtype=int)
         step_window = cropped_object.shape[0] // size
 
         for y in range(size):
             for x in range(size):
                 window = cropped_object[round(y * step_window):round(y * step_window + step_window + 1),
                          round(x * step_window):round(x * step_window + step_window + 1)]
-                hash[y][x] = round(np.mean(window))
+                perceptual_hash[y][x] = round(np.mean(window))
 
-        return hash
+        return np.array(perceptual_hash).astype(int)
