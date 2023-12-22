@@ -90,11 +90,8 @@ class ImageDatabaseApp:
 
     def add_to_database(self):
         self.knowledge_base_changed = True
-        result = self.knowledge_base.add_pattern(self.target_image['name'], self.target_image['hashes'])
-        if result:
-            self.show_notification(f"Добавлено в базу: {self.target_image['name']}")
-        else:
-            self.show_notification(f"Это изображение уже есть!", "red")
+        self.knowledge_base.add_pattern(self.target_image['name'], self.target_image['hashes'])
+        self.show_notification(f"Добавлено в базу: {self.target_image['name']}")
 
     def show_notification(self, message, color="green"):
         self.notification_label.config(text=message, fg=color)

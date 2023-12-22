@@ -29,19 +29,10 @@ class KnowledgeBase:
         self.hash_storage, self.pattern_storage = self.get_knowledge()
 
     def add_pattern(self, name, hashes):
-        for i, component in enumerate(hashes):
-            not_changed = True
-            for component_stor in self.hash_storage:
-                if self.compare_hashes(component, component_stor, 0.25):
-                    hashes[i] = component_stor
-                    not_changed = False
-                    break
-
-            if not_changed:
-                self.hash_storage.append(component)
-
+        for i, perceptual_hash in enumerate(hashes):
+            if perceptual_hash not in self.hash_storage:
+                self.hash_storage.append(perceptual_hash)
         self.pattern_storage.append(Pattern(name, hashes))
-        return True
 
     def database_search(self, perceptual_hash):
         result = []
