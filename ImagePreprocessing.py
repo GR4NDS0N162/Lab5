@@ -16,11 +16,14 @@ class ImagePreprocessing:
 
     def process_image(self, image):
         pixels = np.array(image)
+
         pixels = self.adjust_contrast(pixels)
-        pixels = self.grayscale_filter(pixels)
-        pixels = self.filter_median_max_min(pixels, self.halftone_filter)
-        pixels = self.filter_mono(pixels)
-        pixels = self.dilate(pixels)
+        pixels = self.to_grayscale(pixels)
+        pixels = self.filter_max_min(pixels, self.halftone_filter)
+        pixels = self.to_mono(pixels)
+        pixels = self.morphological_dilatation(pixels)
+
+        pixels = 1 - pixels
         return pixels
 
     def adjust_contrast(self, pixels):
