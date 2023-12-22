@@ -1,14 +1,16 @@
 import tkinter as tk
-from tkinter import filedialog, messagebox
-from PIL import Image
 from pathlib import Path
+from tkinter import filedialog, messagebox
 
-import ImagePreprocessing
+from PIL import Image
+
 import ImageAnalysis
+import ImagePreprocessing
 import KnowledgeBase
 
 
 class ImageDatabaseApp:
+
     def __init__(self, root):
         self.root = root
         self.root.title("Image Database App")
@@ -33,10 +35,11 @@ class ImageDatabaseApp:
         self.notification_label = tk.Label(self.root, text="", fg="green")
         self.notification_label.grid(row=3, column=0, columnspan=2, pady=10)
 
+        self.hash_dimension = 16
         self.prep_module = ImagePreprocessing.ImagePreprocessing(step_window=1, contrast_factor=2,
                                                                  halftone_filter=ImagePreprocessing.MIN)
-        self.analysis_module = ImageAnalysis.ImageAnalysis(hash_dimension=16)
-        self.knowledge_base = KnowledgeBase.KnowledgeBase("data.json")
+        self.analysis_module = ImageAnalysis.ImageAnalysis(hash_dimension=self.hash_dimension)
+        self.knowledge_base = KnowledgeBase.KnowledgeBase(file_path="data.json", hash_dimension=self.hash_dimension)
 
         self.target_image = None
         self.knowledge_base_changed = False

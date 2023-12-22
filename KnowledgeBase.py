@@ -29,8 +29,9 @@ def get_binary_hash(hex_hash):
 
 class KnowledgeBase:
 
-    def __init__(self, file_path):
+    def __init__(self, file_path, hash_dimension):
         self.file_path = file_path
+        self.hash_dimension = hash_dimension
         self.hash_storage, self.likeness_storage = self.get_knowledge()
 
     def add_likeness(self, name, hashes, local_areas):
@@ -94,7 +95,7 @@ class KnowledgeBase:
 
         dif_hash = np.logical_xor(hash1, hash2)
         dif = np.count_nonzero(dif_hash)
-        if dif / 256 < accuracy:
+        if dif / (self.hash_dimension ** 2) < accuracy:
             return True
         else:
             return False
