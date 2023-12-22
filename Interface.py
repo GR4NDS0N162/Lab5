@@ -33,7 +33,7 @@ class ImageDatabaseApp:
         self.notification_label.grid(row=3, column=0, columnspan=4)
 
         self.hash_dimension = 16
-        self.prep_module = ImagePreprocessing.ImagePreprocessing(step_window=1, contrast_factor=2,
+        self.prep_module = ImagePreprocessing.ImagePreprocessing(step_window=1, contrast_change_factor=2,
                                                                  halftone_filter=ImagePreprocessing.MIN)
         self.analysis_module = ImageAnalysis.ImageAnalysis(hash_dimension=self.hash_dimension)
         self.knowledge_base = KnowledgeBase.KnowledgeBase(file_path="data.json", hash_dimension=self.hash_dimension)
