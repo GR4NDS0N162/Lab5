@@ -8,8 +8,8 @@ class ImageAnalysis:
 
     def analyze_image(self, processed_image):
         objects = self.detect_objects(processed_image)
-        hashes, local_areas = self.compute_perceptual_hashes(objects)
-        return hashes, local_areas
+        hashes = self.compute_perceptual_hashes(objects)
+        return hashes
 
     def detect_objects(self, pixels):
         current_object = 0
@@ -64,7 +64,6 @@ class ImageAnalysis:
 
     def compute_perceptual_hashes(self, objects):
         perceptual_hashes = []
-        local_areas = []
 
         for i in range(objects.shape[0]):
             min_y = objects.shape[1]
@@ -78,8 +77,6 @@ class ImageAnalysis:
                     min_y = min(y, min_y) if objects[i][y][x] else min_y
                     max_x = max(x, max_x) if objects[i][y][x] else max_x
                     max_y = max(y, max_y) if objects[i][y][x] else max_y
-
-            local_areas.append([min_x, min_y, max_x, max_y])
 
             height = max_y - min_y + 1
             width = max_x - min_x + 1
@@ -109,7 +106,7 @@ class ImageAnalysis:
             perceptual_hash = int(''.join(map(str, perceptual_hash[:int(self.hash_dimension ** 2)])), 2)
             perceptual_hashes.append(format(perceptual_hash, f'0{int(self.hash_dimension ** 2) // 4}x'))
 
-        return perceptual_hashes, local_areas
+        return perceptual_hashes
 
     def fit_to_hash(self, cropped_object, decrease):
         if cropped_object.shape[0] == self.hash_dimension:

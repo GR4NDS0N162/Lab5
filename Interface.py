@@ -27,9 +27,9 @@ class ImageDatabaseApp:
         self.calculate_hash_button.grid(row=1, column=0, columnspan=2)
 
         self.add_to_database_button = tk.Button(self.root, text="Добавить в хранилище", command=self.add_to_database)
-        self.add_to_database_button.grid(row=1, column=1, columnspan=3)
+        self.add_to_database_button.grid(row=1, column=2, columnspan=3)
 
-        self.notification_label = tk.Label(self.root, text="", fg="green")
+        self.notification_label = tk.Message(self.root, text="", fg="green", width=500)
         self.notification_label.grid(row=3, column=0, columnspan=5)
 
         self.hash_dimension = 16
@@ -82,9 +82,9 @@ class ImageDatabaseApp:
             name = Path(image_path).stem
             image = Image.open(image_path).convert("RGB")
             processed_image = self.prep_module.process_image(image)
-            hashes, local_areas = self.analysis_module.analyze_image(processed_image)
-            self.target_image = {"name": name, "hashes": hashes, "local_areas": local_areas}
-            self.show_notification(f"Успешно вычислен хеш!")
+            hashes = self.analysis_module.analyze_image(processed_image)
+            self.target_image = {"name": name, "hashes": hashes}
+            self.show_notification(f"Вычисленные хеши: {str(hashes)}")
         except Exception as e:
             self.show_notification(f"Ошибка при вычислении хеша: {str(e)}", "red")
 

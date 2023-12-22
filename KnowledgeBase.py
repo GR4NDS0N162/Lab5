@@ -32,7 +32,7 @@ class KnowledgeBase:
         for i, component in enumerate(hashes):
             not_changed = True
             for component_stor in self.hash_storage:
-                if self.compare_hashes(component, component_stor, 0.1):
+                if self.compare_hashes(component, component_stor, 0.25):
                     hashes[i] = component_stor
                     not_changed = False
                     break
@@ -55,14 +55,14 @@ class KnowledgeBase:
     def get_by_index(self, index):
         return self.pattern_storage[index]
 
-    def compare_hashes(self, hash1, hash2, accuracy):
+    def compare_hashes(self, hash1, hash2, error):
         hash1 = get_binary_hash(hash1)
         hash2 = get_binary_hash(hash2)
 
         dif_hash = np.logical_xor(hash1, hash2)
-        dif = np.count_nonzero(dif_hash)
+        dif = np.count_nonzero(dif_hash) / (self.hash_dimension ** 2)
 
-        if dif / (self.hash_dimension ** 2) < accuracy:
+        if dif < error:
             return True
         else:
             return False
