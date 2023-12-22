@@ -38,8 +38,23 @@ class ImageDatabaseApp:
         self.analysis_module = ImageAnalysis.ImageAnalysis(hash_dimension=self.hash_dimension)
         self.knowledge_base = KnowledgeBase.KnowledgeBase(file_path="data.json", hash_dimension=self.hash_dimension)
 
+        option_list = self.knowledge_base.hash_storage
+        variable = tk.StringVar(self.root)
+        variable.set(option_list[0])
+        variable.trace("w", self.on_option_click)
+
+        self.dropdown_hashes = tk.OptionMenu(self.root, variable, *option_list)
+        self.dropdown_hashes.grid(row=4, column=0, columnspan=4)
+
+        self.dropdown_hashes_info = tk.Label(self.root, text="", fg="black")
+        self.dropdown_hashes_info.grid(row=5, column=0, columnspan=4)
+
         self.target_image = None
         self.knowledge_base_changed = False
+
+    def on_option_click(self, *args):
+        variable = self.dropdown_hashes.getvar(args[0])
+        self.dropdown_hashes_info.configure(text="The selected item is {}".format(variable))
 
     def browse_image(self):
         file_path = filedialog.askopenfilename(title="Select Image", filetypes=[("Image files", "*.png;*.jpg;*.jpeg")])
