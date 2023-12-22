@@ -2,7 +2,15 @@
   "file_path": "data.json",
   "hash_dimension": 16,
   "hash_storage": [
+    "008001c001c003e00370063006380c981f8c1b8c3ba632f760f37fffffff0000"
   ],
   "likeness_storage": [
+    {
+      "name": "\u0414\u043e\u0440\u043e\u0436\u043d\u044b\u0435 \u0440\u0430\u0431\u043e\u0442\u044b",
+      "components": [
+        "008001c001c003e00370063006380c981f8c1b8c3ba632f760f37fffffff0000"
+      ],
+      "connections": []
+    }
   ]
 }
