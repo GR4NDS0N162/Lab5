@@ -107,8 +107,8 @@ class ImageAnalysis:
                 perceptual_hash = objects[i]
 
             perceptual_hash = perceptual_hash.ravel()
-            perceptual_hash = int(''.join(map(str, hash[:int(self.hash_dimension ** 2)])), 2)
-            perceptual_hashes.append(format(hash, f'0{int(self.hash_dimension ** 2) // 4}x'))
+            perceptual_hash = int(''.join(map(str, perceptual_hash[:int(self.hash_dimension ** 2)])), 2)
+            perceptual_hashes.append(format(perceptual_hash, f'0{int(self.hash_dimension ** 2) // 4}x'))
 
         return perceptual_hashes, local_areas
 
