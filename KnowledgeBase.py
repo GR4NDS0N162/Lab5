@@ -6,17 +6,11 @@ import numpy as np
 import Connection
 
 
-def create_likeness(name, hashes, local_areas):
-    connections = Connection.get_connections(hashes, local_areas)
-    return Likeness(name, hashes, connections)
-
-
 class Likeness:
 
-    def __init__(self, name, components, connections):
+    def __init__(self, name, components):
         self.name = name
         self.components = components
-        self.connections = connections
 
     def __eq__(self, other):
         return self.name.lower() == other.name.lower()
@@ -46,7 +40,7 @@ class KnowledgeBase:
             if not_changed:
                 self.hash_storage.append(component)
 
-        self.likeness_storage.append(create_likeness(name, hashes, local_areas))
+        self.likeness_storage.append(Likeness(name, hashes))
         return True
 
     def database_search(self, target_image):

@@ -2,7 +2,12 @@
   "file_path": "data.json",
   "hash_dimension": 16,
   "hash_storage": [
-    "008001c001c003e00370063006380c981f8c1b8c3ba632f760f37fffffff0000"
+    "008001c001c003e00370063006380c981f8c1b8c3ba632f760f37fffffff0000",
+    "03801ff03c78701c600cc00ec006c006c006c006e00c600c70383ff00fe00380",
+    "01f007f01ff01f803e007c007c00fe00ffe0fff8fffcf87cf03ce01ce01cf03c",
+    "1ff07ff87ffcf87cf03ee01ee00ee00ec00ec00ee00ee00ee00ee01ef03ef87c",
+    "3c007c00fc00fc00fc00fc007c003c003c001c001c001c001c001c001c001c00",
+    "7ffc7ffc7ffc7ff07fe07fe07ff07ffc7ffc3e7e001e000e000e000e001e603e"
   ],
   "likeness_storage": [
     {
@@ -11,6 +16,40 @@
         "008001c001c003e00370063006380c981f8c1b8c3ba632f760f37fffffff0000"
       ],
       "connections": []
+    },
+    {
+      "name": "\u041e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0435 \u0441\u043a\u043e\u0440\u043e\u0441\u0442\u0438 60",
+      "components": [
+        "03801ff03c78701c600cc00ec006c006c006c006e00c600c70383ff00fe00380",
+        "01f007f01ff01f803e007c007c00fe00ffe0fff8fffcf87cf03ce01ce01cf03c",
+        "1ff07ff87ffcf87cf03ee01ee00ee00ec00ec00ee00ee00ee00ee01ef03ef87c"
+      ],
+      "connections": [
+        {
+          "01f007f01ff01f803e007c007c00fe00ffe0fff8fffcf87cf03ce01ce01cf03c": 0,
+          "1ff07ff87ffcf87cf03ee01ee00ee00ec00ec00ee00ee00ee00ee01ef03ef87c": 0
+        },
+        {
+          "1ff07ff87ffcf87cf03ee01ee00ee00ec00ec00ee00ee00ee00ee01ef03ef87c": 2
+        }
+      ]
+    },
+    {
+      "name": "\u041e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0435 \u0441\u043a\u043e\u0440\u043e\u0441\u0442\u0438 15",
+      "components": [
+        "03801ff03c78701c600cc00ec006c006c006c006e00c600c70383ff00fe00380",
+        "3c007c00fc00fc00fc00fc007c003c003c001c001c001c001c001c001c001c00",
+        "7ffc7ffc7ffc7ff07fe07fe07ff07ffc7ffc3e7e001e000e000e000e001e603e"
+      ],
+      "connections": [
+        {
+          "3c007c00fc00fc00fc00fc007c003c003c001c001c001c001c001c001c001c00": 0,
+          "7ffc7ffc7ffc7ff07fe07fe07ff07ffc7ffc3e7e001e000e000e000e001e603e": 0
+        },
+        {
+          "7ffc7ffc7ffc7ff07fe07fe07ff07ffc7ffc3e7e001e000e000e000e001e603e": 2
+        }
+      ]
     }
   ]
 }
