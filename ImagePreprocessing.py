@@ -32,11 +32,11 @@ class ImagePreprocessing:
 
         pixels = self.to_mono(pixels)
         if show_image:
-            Image.fromarray(pixels).show()
+            Image.fromarray(pixels * 255).show()
 
         pixels = self.morphological_dilatation(pixels)
         if show_image:
-            Image.fromarray(pixels).show()
+            Image.fromarray(pixels * 255).show()
 
         pixels = 1 - pixels
         return pixels

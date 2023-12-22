@@ -16,7 +16,6 @@ class ImageAnalysis:
         objects = {}
         for line in range(pixels.shape[0]):
             for col in range(pixels.shape[1]):
-
                 if col - 1 < 0:
                     b = 0
                 else:
