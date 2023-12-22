@@ -109,6 +109,6 @@ class KnowledgeBase:
 
         return json_data["hash_storage"], images
 
-    def safe_knowledge(self):
+    def save_knowledge(self):
         with open(self.file_path, "w") as json_file:
             json.dump(self, json_file, default=lambda o: o.__dict__, indent=2)

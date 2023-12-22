@@ -80,7 +80,7 @@ class ImageDatabaseApp:
     def on_closing(self):
         if self.knowledge_base_changed and messagebox.askokcancel(f"f{self.knowledge_base.file_path}*",
                                                                   "Сохранить изменения в базе знаний?"):
-            self.knowledge_base.safe_knowledge()
+            self.knowledge_base.save_knowledge()
         self.root.destroy()
 
 
