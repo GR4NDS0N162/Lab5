@@ -55,18 +55,17 @@ class ImageDatabaseApp:
             processed_image = self.prep_module.process_image(image)
             hashes, local_areas = self.analysis_module.analyze_image(processed_image)
             self.target_image = {"name": name, "hashes": hashes, "local_areas": local_areas}
-            self.show_notification(f"Орёл в гнезде!!")
+            self.show_notification(f"Успешно вычислен хеш!")
         except Exception as e:
-            self.show_notification(f"Error calculating hash: {str(e)}", "red")
+            self.show_notification(f"Ошибка при вычислении хеша: {str(e)}", "red")
 
     def add_to_database(self):
         self.knowledge_base_changed = True
-        result = self.knowledge_base.add_likeness(self.target_image['name'], self.target_image['hashes'],
-                                                  self.target_image['local_areas'])
+        result = self.knowledge_base.add_pattern(self.target_image['name'], self.target_image['hashes'])
         if result:
-            self.show_notification(f"Added to database: {self.target_image['name']}")
+            self.show_notification(f"Добавлено в базу: {self.target_image['name']}")
         else:
-            self.show_notification(f"This image already exists!!!", "red")
+            self.show_notification(f"Это изображение уже есть!", "red")
 
     def show_notification(self, message, color="green"):
         self.notification_label.config(text=message, fg=color)

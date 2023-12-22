@@ -6,7 +6,7 @@ import numpy as np
 import Connection
 
 
-class Likeness:
+class Pattern:
 
     def __init__(self, name, components):
         self.name = name
@@ -26,9 +26,9 @@ class KnowledgeBase:
     def __init__(self, file_path, hash_dimension):
         self.file_path = file_path
         self.hash_dimension = hash_dimension
-        self.hash_storage, self.likeness_storage = self.get_knowledge()
+        self.hash_storage, self.pattern_storage = self.get_knowledge()
 
-    def add_likeness(self, name, hashes, local_areas):
+    def add_pattern(self, name, hashes):
         for i, component in enumerate(hashes):
             not_changed = True
             for component_stor in self.hash_storage:
@@ -40,7 +40,7 @@ class KnowledgeBase:
             if not_changed:
                 self.hash_storage.append(component)
 
-        self.likeness_storage.append(Likeness(name, hashes))
+        self.pattern_storage.append(Pattern(name, hashes))
         return True
 
     def database_search(self, target_image):
@@ -57,7 +57,7 @@ class KnowledgeBase:
             return None
 
         result = []
-        for likeness in self.likeness_storage:
+        for likeness in self.pattern_storage:
             check = False
             for component in likeness.components:
                 if component not in known_objects:
@@ -99,8 +99,8 @@ class KnowledgeBase:
             json_data = json.load(json_file)
 
         images = []
-        for likeness in json_data["likeness_storage"]:
-            images.append(Likeness(likeness['name'], likeness['components'], likeness['connections']))
+        for likeness in json_data["pattern_storage"]:
+            images.append(Pattern(likeness['name'], likeness['components']))
 
         return json_data["hash_storage"], images
 
