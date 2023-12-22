@@ -5,7 +5,6 @@ import ImagePreprocessing
 import ImageStorage
 
 MAX = 1
-MEDIAN = 0
 MIN = -1
 
 # Пример использования
