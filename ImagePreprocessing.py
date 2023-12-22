@@ -99,13 +99,3 @@ class ImagePreprocessing:
 
     def morphological_dilatation(self, pixels):
         return self.filter_max_min(pixels, MAX)
-
-    def morphological_erosion(self, pixels):
-        return self.filter_max_min(pixels, MIN)
-
-    def morphological_closure(self, pixels):
-        return self.morphological_erosion(self.morphological_dilatation(pixels))
-
-    def gradiant(self, pixels):
-        gradiant_pixels = np.logical_xor(self.morphological_dilatation(pixels), self.morphological_erosion(pixels))
-        return gradiant_pixels

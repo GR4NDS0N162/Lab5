@@ -2,91 +2,13 @@
   "file_path": "data.json",
   "hash_dimension": 16,
   "hash_storage": [
-    "008001c001c003e00370063006380c981f8c1b8c3ba632f760f37fffffff0000",
-    "03801ff03c78701c600cc00ec006c006c006c006e00c600c70383ff00fe00380",
-    "01f007f01ff01f803e007c007c00fe00ffe0fff8fffcf87cf03ce01ce01cf03c",
-    "1ff07ff87ffcf87cf03ee01ee00ee00ec00ec00ee00ee00ee00ee01ef03ef87c",
-    "3c007c00fc00fc00fc00fc007c003c003c001c001c001c001c001c001c001c00",
-    "7ffc7ffc7ffc7ff07fe07fe07ff07ffc7ffc3e7e001e000e000e000e001e603e",
-    "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-    "ffc0ffc0c040c040c040c040c040c040c040ffc0ffc0ffc0ffc0ffc0ffc0ffc0",
-    "7f007f807fc043c001c001c001c043c07fc07fc07fc07fc07fe07fe07fe07fe0",
-    "c000200010000800040002000100008000400020001000080004000200010001",
-    "030007800fc01fe03ff03ff87ffcfffefffe7ffc3ff81ff00fe007c003800100"
+    "008001c001c003e00370063006380c981f8c1b8c3ba632f760f37fffffff0000"
   ],
   "pattern_storage": [
     {
       "name": "\u0414\u043e\u0440\u043e\u0436\u043d\u044b\u0435 \u0440\u0430\u0431\u043e\u0442\u044b",
       "components": [
         "008001c001c003e00370063006380c981f8c1b8c3ba632f760f37fffffff0000"
-      ]
-    },
-    {
-      "name": "\u041e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0435 \u0441\u043a\u043e\u0440\u043e\u0441\u0442\u0438 60",
-      "components": [
-        "03801ff03c78701c600cc00ec006c006c006c006e00c600c70383ff00fe00380",
-        "01f007f01ff01f803e007c007c00fe00ffe0fff8fffcf87cf03ce01ce01cf03c",
-        "1ff07ff87ffcf87cf03ee01ee00ee00ec00ec00ee00ee00ee00ee01ef03ef87c"
-      ]
-    },
-    {
-      "name": "\u041e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0435 \u0441\u043a\u043e\u0440\u043e\u0441\u0442\u0438 15",
-      "components": [
-        "03801ff03c78701c600cc00ec006c006c006c006e00c600c70383ff00fe00380",
-        "3c007c00fc00fc00fc00fc007c003c003c001c001c001c001c001c001c001c00",
-        "7ffc7ffc7ffc7ff07fe07fe07ff07ffc7ffc3e7e001e000e000e000e001e603e"
-      ]
-    },
-    {
-      "name": "\u0412\u0435\u043b\u043e\u0441\u0438\u043f\u0435\u0434\u043d\u0430\u044f \u0434\u043e\u0440\u043e\u0436\u043a\u0430",
-      "components": [
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff"
-      ]
-    },
-    {
-      "name": "\u0410\u0432\u0442\u043e\u0437\u0430\u043f\u0440\u0430\u0432\u043e\u0447\u043d\u0430\u044f \u0441\u0442\u0430\u043d\u0446\u0438\u044f",
-      "components": [
-        "ffc0ffc0c040c040c040c040c040c040c040ffc0ffc0ffc0ffc0ffc0ffc0ffc0",
-        "7f007f807fc043c001c001c001c043c07fc07fc07fc07fc07fe07fe07fe07fe0"
-      ]
-    },
-    {
-      "name": "\u0413\u043b\u0430\u0432\u043d\u0430\u044f \u0434\u043e\u0440\u043e\u0433\u0430",
-      "components": [
-        "c000200010000800040002000100008000400020001000080004000200010001",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "c000200010000800040002000100008000400020001000080004000200010001",
-        "030007800fc01fe03ff03ff87ffcfffefffe7ffc3ff81ff00fe007c003800100",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "03f80ffe1fff3fff7fff7ff7ffe7fffffbffffffffdfffffffff7fff7fff3fff",
-        "c000200010000800040002000100008000400020001000080004000200010001"
       ]
     }
   ]

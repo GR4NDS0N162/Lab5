@@ -40,7 +40,7 @@ class ImageDatabaseApp:
 
         hash_option_list = self.knowledge_base.hash_storage
         hash_variable = tk.StringVar(self.root)
-        hash_variable.set(hash_option_list[0])
+        # hash_variable.set(hash_option_list[0])
         hash_variable.trace("w", self.on_hash_option_click)
 
         self.dropdown_hashes = tk.OptionMenu(self.root, hash_variable, *hash_option_list)
@@ -51,7 +51,7 @@ class ImageDatabaseApp:
 
         index_option_list = list(map(str, range(len(self.knowledge_base.pattern_storage))))
         index_variable = tk.StringVar(self.root)
-        index_variable.set(index_option_list[0])
+        # index_variable.set(index_option_list[0])
         index_variable.trace("w", self.on_index_option_click)
 
         self.dropdown_hashes = tk.OptionMenu(self.root, index_variable, *index_option_list)
@@ -81,7 +81,7 @@ class ImageDatabaseApp:
         try:
             name = Path(image_path).stem
             image = Image.open(image_path).convert("RGB")
-            processed_image = self.prep_module.process_image(image)
+            processed_image = self.prep_module.process_image(image, True)
             hashes = self.analysis_module.analyze_image(processed_image)
             self.target_image = {"name": name, "hashes": hashes}
             self.show_notification(f"Вычисленные хеши: {str(hashes)}")
