@@ -17,20 +17,20 @@ class ImageDatabaseApp:
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
         self.root.resizable(False, False)
-        self.image_path_entry = tk.Entry(self.root, width=40)
-        self.image_path_entry.grid(row=0, column=0, columnspan=3)
+        self.image_path_entry = tk.Entry(self.root, width=50)
+        self.image_path_entry.grid(row=0, column=0, columnspan=4)
 
         self.browse_button = tk.Button(self.root, text="Обзор", command=self.browse_image)
-        self.browse_button.grid(row=0, column=3, columnspan=1)
+        self.browse_button.grid(row=0, column=4, columnspan=1)
 
         self.calculate_hash_button = tk.Button(self.root, text="Вычислить хеш", command=self.calculate_hash)
-        self.calculate_hash_button.grid(row=1, column=0, columnspan=1)
+        self.calculate_hash_button.grid(row=1, column=0, columnspan=2)
 
         self.add_to_database_button = tk.Button(self.root, text="Добавить в хранилище", command=self.add_to_database)
         self.add_to_database_button.grid(row=1, column=1, columnspan=3)
 
         self.notification_label = tk.Label(self.root, text="", fg="green")
-        self.notification_label.grid(row=3, column=0, columnspan=4)
+        self.notification_label.grid(row=3, column=0, columnspan=5)
 
         self.hash_dimension = 16
         self.prep_module = ImagePreprocessing.ImagePreprocessing(step_window=1, contrast_change_factor=2,
@@ -41,20 +41,21 @@ class ImageDatabaseApp:
         option_list = self.knowledge_base.hash_storage
         variable = tk.StringVar(self.root)
         variable.set(option_list[0])
-        variable.trace("w", self.on_option_click)
+        variable.trace("w", self.on_hash_option_click)
 
         self.dropdown_hashes = tk.OptionMenu(self.root, variable, *option_list)
-        self.dropdown_hashes.grid(row=4, column=0, columnspan=4)
+        self.dropdown_hashes.grid(row=4, column=0, columnspan=5)
 
-        self.dropdown_hashes_info = tk.Label(self.root, text="", fg="black")
-        self.dropdown_hashes_info.grid(row=5, column=0, columnspan=4)
+        self.dropdown_hashes_info = tk.Message(self.root, text="", fg="black", width=400)
+        self.dropdown_hashes_info.grid(row=5, column=0, columnspan=5)
 
         self.target_image = None
         self.knowledge_base_changed = False
 
-    def on_option_click(self, *args):
+    def on_hash_option_click(self, *args):
         variable = self.dropdown_hashes.getvar(args[0])
-        self.dropdown_hashes_info.configure(text="The selected item is {}".format(variable))
+        result = self.knowledge_base.database_search(variable)
+        self.dropdown_hashes_info.configure(text=str(result))
 
     def browse_image(self):
         file_path = filedialog.askopenfilename(title="Select Image", filetypes=[("Image files", "*.png;*.jpg;*.jpeg")])

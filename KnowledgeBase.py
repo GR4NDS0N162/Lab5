@@ -12,6 +12,9 @@ class Pattern:
     def __eq__(self, other):
         return self.name.lower() == other.name.lower()
 
+    def __str__(self):
+        return self.name + ' - ' + str(self.components)
+
 
 def get_binary_hash(hex_hash):
     binary_hash = bin(int(hex_hash, 16))[2:].zfill(len(hex_hash) * 4)
@@ -40,11 +43,12 @@ class KnowledgeBase:
         self.pattern_storage.append(Pattern(name, hashes))
         return True
 
-    def database_search(self, target_image):
+    def database_search(self, perceptual_hash):
         result = []
 
-        if len(result) == 0:
-            return None
+        for pattern in self.pattern_storage:
+            if perceptual_hash in pattern.components:
+                result.append(str(pattern))
 
         return result
 
@@ -65,8 +69,8 @@ class KnowledgeBase:
             json_data = json.load(json_file)
 
         images = []
-        for likeness in json_data["pattern_storage"]:
-            images.append(Pattern(likeness['name'], likeness['components']))
+        for pattern in json_data["pattern_storage"]:
+            images.append(Pattern(pattern['name'], pattern['components']))
 
         return json_data["hash_storage"], images
 
