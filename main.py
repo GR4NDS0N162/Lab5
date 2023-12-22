@@ -7,7 +7,6 @@ import ImageStorage
 MAX = 1
 MIN = -1
 
-# Пример использования
 if __name__ == "__main__":
     # Создание экземпляров модулей
     prep_module = ImagePreprocessing.ImagePreprocessing(step_window=1, contrast_factor=2, halftone_filter=MIN)
