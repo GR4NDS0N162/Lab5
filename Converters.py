@@ -48,25 +48,28 @@ def hsl_to_rgb(pixels):
     r_chanel = []
     g_chanel = []
     b_chanel = []
+
     h_chanel, s_chanel, l_chanel = pixels[:, :, 0], pixels[:, :, 1], pixels[:, :, 2]
+
     for line in range(len(pixels)):
         r_line = []
         g_line = []
         b_line = []
+
         for col in range(len(pixels[line])):
-            h, s, l = h_chanel[line][col] / 360.0, s_chanel[line][col], l_chanel[line][col]
+            hue, saturation, lightness = h_chanel[line][col] / 360.0, s_chanel[line][col], l_chanel[line][col]
 
-            if s == 0:
-                r_line.append(int(l * 255))
-                g_line.append(int(l * 255))
-                b_line.append(int(l * 255))
+            if saturation == 0:
+                r_line.append(int(lightness * 255))
+                g_line.append(int(lightness * 255))
+                b_line.append(int(lightness * 255))
             else:
-                q = l * (1.0 + s) if l < 0.5 else l + s - l * s
-                p = 2.0 * l - q
+                q = lightness * (1.0 + saturation) if lightness < 0.5 else lightness + saturation - lightness * saturation
+                p = 2.0 * lightness - q
 
-                r_line.append(int(hue_to_rgb(p, q, h + 1 / 3) * 255))
-                g_line.append(int(hue_to_rgb(p, q, h) * 255))
-                b_line.append(int(hue_to_rgb(p, q, h - 1 / 3) * 255))
+                r_line.append(int(hue_to_rgb(p, q, hue + 1 / 3) * 255))
+                g_line.append(int(hue_to_rgb(p, q, hue) * 255))
+                b_line.append(int(hue_to_rgb(p, q, hue - 1 / 3) * 255))
 
         r_chanel.append(r_line)
         g_chanel.append(g_line)
